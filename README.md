@@ -1,5 +1,5 @@
 ```markdown
-# Project Name
+# TrekTicket
 
 A brief description of your project.
 
