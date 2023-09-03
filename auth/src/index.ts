@@ -3,6 +3,7 @@ import express from "express";
 import "express-async-errors";
 import { json } from "body-parser";
 import mongoose from "mongoose";
+import cookieSession from "cookie-session";
 
 import { currentUserRouter } from "./routes/current-user";
 import { signinRouter } from "./routes/signin";
@@ -14,8 +15,16 @@ import { NotFoundError } from "./errors/not-found-error";
 // Create an Express application
 const app = express();
 
+app.set("trust proxy", true);
 // Middleware for parsing JSON data
 app.use(json());
+//cookie-session
+app.use(
+  cookieSession({
+    signed: false,
+    secure: true,
+  })
+);
 
 // Register routers for different routes
 app.use(currentUserRouter);
@@ -33,6 +42,10 @@ app.use(errorHandler);
 
 // Function to start the server
 const start = async () => {
+  if(!process.env.JWT_KEY){
+    throw new Error('JWT_KEY must be defined')
+  }
+  
   try {
     // Connect to MongoDB
     await mongoose.connect("mongodb://auth-mongo-srv:27017/auth");
