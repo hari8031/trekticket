@@ -11,11 +11,11 @@ const router = express.Router();
 router.post(
   "/api/users/signup",
   [
-    body("email").isEmail().withMessage("email must be valid"),
+    body("email").isEmail().withMessage("Please provide a valid email address."),
     body("password")
       .trim()
       .isLength({ min: 4, max: 20 })
-      .withMessage("Password must been 4 and 20 characters"),
+      .withMessage("Password must be between 4 and 20 characters in length."),
   ],
   validateRequest,
   async (req: Request, res: Response) => {
@@ -24,7 +24,7 @@ router.post(
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
-      throw new BadRequestError("Email in use");
+      throw new BadRequestError("This email address is already in use.");
     }
 
     const user = User.build({ email, password });
