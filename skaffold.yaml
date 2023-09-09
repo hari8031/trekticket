@@ -8,19 +8,19 @@ build:
   local:
     push: false
   artifacts:
-    - image: hk8031/auth
+    - image: rallycoding/auth
       context: auth
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
-          - dest: .
-            src: "src/**/*.ts"
-    - image: hk8031/client
+          - src: "src/**/*.ts"
+            dest: .
+    - image: rallycoding/ticketing-client
       context: client
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
-          - dest: .
-            src: "**/*.js"
+          - src: '**/*.js'
+            dest: .

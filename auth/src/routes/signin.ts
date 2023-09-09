@@ -1,21 +1,24 @@
-import express from "express";
-import { body, validationResult } from "express-validator";
-import { Request, Response } from "express";
-import { validateRequest } from "../middlewares/validate-request";
-import { User } from "../models/user";
-import { BadRequestError } from "../errors/bad-request-error";
-import { Password } from "../services/password";
-import jwt from "jsonwebtoken";
+import express, { Request, Response } from 'express';
+import { body } from 'express-validator';
+import jwt from 'jsonwebtoken';
+
+import { Password } from '../services/password';
+import { User } from '../models/user';
+import { validateRequest } from '../middlewares/validate-request';
+import { BadRequestError } from '../errors/bad-request-error';
 
 const router = express.Router();
 
 router.post(
-  "/api/users/signin",
+  '/api/users/signin',
   [
-    body("email")
+    body('email')
       .isEmail()
-      .withMessage("Please provide a valid email address."),
-    body("password").trim().notEmpty().withMessage("Please enter a password."),
+      .withMessage('Email must be valid'),
+    body('password')
+      .trim()
+      .notEmpty()
+      .withMessage('You must supply a password')
   ],
   validateRequest,
   async (req: Request, res: Response) => {
@@ -23,28 +26,29 @@ router.post(
 
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
-      throw new BadRequestError("Credentials provided are invalid.");
+      throw new BadRequestError('Invalid credentials');
     }
 
-    const passwordMatch = await Password.compare(
+    const passwordsMatch = await Password.compare(
       existingUser.password,
       password
     );
-    if (!passwordMatch) {
-      throw new BadRequestError("Invalid credentials provided.");
+    if (!passwordsMatch) {
+      throw new BadRequestError('Invalid Credentials');
     }
-    //Generate jwt
+
+    // Generate JWT
     const userJwt = jwt.sign(
       {
         id: existingUser.id,
-        email: existingUser.email,
+        email: existingUser.email
       },
       process.env.JWT_KEY!
     );
 
-    //Store it on session object
+    // Store it on session object
     req.session = {
-      jwt: userJwt,
+      jwt: userJwt
     };
 
     res.status(200).send(existingUser);

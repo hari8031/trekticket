@@ -14,10 +14,10 @@ spec:
     spec:
       containers:
         - name: auth
-          image: hk8031/auth
+          image: rallycoding/auth
           env:
             - name: JWT_KEY
-              valueFrom: 
+              valueFrom:
                 secretKeyRef:
                   name: jwt-secret
                   key: JWT_KEY
