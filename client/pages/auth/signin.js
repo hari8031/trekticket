@@ -1,14 +1,14 @@
 import { useState } from "react";
 import Router from "next/router";
 import useRequest from "../../hooks/use-request";
-import animationData from "../../assets/hero-bg-animation.json";
+import animationData from "../../assets/hero-bg-animation-2.json";
 import Lottie from "lottie-react";
 
 export default () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { doRequest, errors } = useRequest({
-    url: "/api/users/signup",
+    url: "/api/users/signin",
     method: "post",
     body: {
       email,
@@ -29,8 +29,8 @@ export default () => {
         style={{ objectFit: "contain", zIndex: 1 }}
         animationData={animationData}
       />
-      <h1 className=" text-3xl font-bold my-3">SignUp to TrekTicket</h1>
-      <form className="w-full max-w-[400px] mb-3" onSubmit={onSubmit}>
+      <h1 className=" text-3xl font-bold my-3">SignIn to TrekTicket</h1>
+      <form className="w-full max-w-[400px] my-3" onSubmit={onSubmit}>
         <div className="flex flex-col my-3">
           <label className=" font-medium">Enter your email</label>
           <input
@@ -51,11 +51,11 @@ export default () => {
         </div>
         {errors}
         <button className=" bg-black text-white h-14 w-full rounded-full my-3">
-          SignUp
+          SignIn
         </button>
         <div className=" flex justify-between mt-6">
-          <h6>Already have an account</h6>
-          <a href="/auth/signin">SignIn</a>
+          <h6>Didn't have an account</h6>
+          <a href="/auth/signup">SignUp</a>
         </div>
       </form>
     </div>
