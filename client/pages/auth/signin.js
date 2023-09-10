@@ -29,13 +29,13 @@ export default () => {
         style={{ objectFit: "contain", zIndex: 1 }}
         animationData={animationData}
       />
-      <h1 className=" text-3xl font-bold my-3">SignIn to TrekTicket</h1>
+      <h1 className=" text-2xl font-bold my-3">Sign in to TrekTicket</h1>
       <form className="w-full max-w-[400px] my-3" onSubmit={onSubmit}>
         <div className="flex flex-col my-3">
           <label className=" font-medium">Enter your email</label>
           <input
             type="text"
-            className=" border-gray-300 border-2 rounded-lg h-14"
+            className=" border-gray-300 border-2 rounded-lg h-14 px-5"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -44,18 +44,17 @@ export default () => {
           <label className=" font-medium">Password</label>
           <input
             type="password"
-            className=" border-gray-300 border-2 rounded-lg h-14"
+            className=" border-gray-300 border-2 rounded-lg h-14 px-5"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         {errors}
-        <button className=" bg-black text-white h-14 w-full rounded-full my-3">
+        <button className=" bg-orange-500 text-white h-14 w-full rounded-full my-3 hover:bg-orange-400 transition duration-300 ease-in-out">
           SignIn
         </button>
-        <div className=" flex justify-between mt-6">
-          <h6>Didn't have an account</h6>
-          <a href="/auth/signup">SignUp</a>
+        <div className="flex justify-center">
+          <span>Don't have an account? <a href="/auth/signup">Sign up</a></span>
         </div>
       </form>
     </div>
