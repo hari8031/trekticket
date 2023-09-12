@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 interface TicketAttrs {
   title: string;
@@ -10,7 +10,6 @@ interface TicketDoc extends mongoose.Document {
   title: string;
   price: number;
   userId: string;
-  createAt: string;
 }
 
 interface TicketModel extends mongoose.Model<TicketDoc> {
@@ -46,6 +45,6 @@ ticketSchema.statics.build = (attrs: TicketAttrs) => {
   return new Ticket(attrs);
 };
 
-const Ticket = mongoose.model<TicketDoc, TicketModel>("Ticket", ticketSchema);
+const Ticket = mongoose.model<TicketDoc, TicketModel>('Ticket', ticketSchema);
 
 export { Ticket };

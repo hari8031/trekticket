@@ -16,19 +16,19 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: hk8031/tickets
-      context: auth
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: "src/**/*.ts"
-            dest: .
-    - image: hk8031/tickets-client
+    - image: hk8031/ticketing-client
       context: client
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
           - src: '**/*.js'
+            dest: .
+    - image: hk8031/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
             dest: .

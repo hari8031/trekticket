@@ -1,35 +1,31 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 export default ({ currentUser }) => {
-  // Define an array of link objects based on the currentUser status
   const links = [
-    !currentUser && { label: "Sign Up", href: "/auth/signup" },
-    !currentUser && { label: "Sign In", href: "/auth/signin" },
-    currentUser && { label: "Sign Out", href: "/auth/signout" },
+    !currentUser && { label: 'Sign Up', href: '/auth/signup' },
+    !currentUser && { label: 'Sign In', href: '/auth/signin' },
+    currentUser && { label: 'Sign Out', href: '/auth/signout' },
   ]
     .filter((linkConfig) => linkConfig)
     .map(({ label, href }) => {
       return (
-        <Link
-          href={href}
-          className="font-medium text-1xl border-2 rounded-xl p-3 text-white bg-black hover:bg-white hover:text-black"
-          key={href}
-        >
-          {label}
-        </Link>
+        <li key={href} className="nav-item">
+          <Link className="nav-link" href={href}>
+            {label}
+          </Link>
+        </li>
       );
     });
 
   return (
-    // Render the navigation bar
-    <nav className="px-16 p-4 flex flex-col md:flex-row gap-5 md:gap-0 md:justify-between items-center bg-slate-100 ">
-      {/* Render the site logo with a link to the home page */}
-      <Link href="/" className="font-bold text-3xl">
-        TrekTicket
+    <nav className="navbar navbar-light bg-light">
+      <Link className="navbar-brand" href="/">
+        GitTix
       </Link>
 
-      {/* Render the navigation links */}
-      <div className="flex gap-8 justify-center items-center">{links}</div>
+      <div className="d-flex justify-content-end">
+        <ul className="nav d-flex align-items-center">{links}</ul>
+      </div>
     </nav>
   );
 };
