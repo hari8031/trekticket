@@ -9,6 +9,7 @@ it('marks an order as cancelled', async () => {
   const ticket = Ticket.build({
     title: 'concert',
     price: 20,
+    id: ''
   });
   await ticket.save();
 
@@ -37,6 +38,7 @@ it('emits a order cancelled event', async () => {
   const ticket = Ticket.build({
     title: 'concert',
     price: 20,
+    id: ''
   });
   await ticket.save();
 
