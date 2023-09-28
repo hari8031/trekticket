@@ -1,24 +1,25 @@
 import {
-  Listener,
   OrderCancelledEvent,
-  OrderStatus,
   Subjects,
-} from "@hkticket/common";
-import { queueGroupName } from "./queue-group-name";
-import { Message } from "node-nats-streaming";
-import { Order } from "../../models/order";
+  Listener,
+  OrderStatus,
+} from '@hkticket/common';
+import { Message } from 'node-nats-streaming';
+import { queueGroupName } from './queue-group-name';
+import { Order } from '../../models/order';
 
 export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
   subject: Subjects.OrderCancelled = Subjects.OrderCancelled;
   queueGroupName = queueGroupName;
-  async onMessage(data: OrderCancelledEvent["data"], msg: Message) {
+
+  async onMessage(data: OrderCancelledEvent['data'], msg: Message) {
     const order = await Order.findOne({
       _id: data.id,
       version: data.version - 1,
     });
 
     if (!order) {
-      throw new Error("Order not found");
+      throw new Error('Order not found');
     }
 
     order.set({ status: OrderStatus.Cancelled });
