@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/global.css";
 import buildClient from "../api/build-client";
 import Header from "../components/header";
+import ContactForm from "../components/ContactForm";
 
 const AppComponent = ({ Component, pageProps, currentUser }) => {
   let username = "";
@@ -14,6 +15,7 @@ const AppComponent = ({ Component, pageProps, currentUser }) => {
     <div>
       <Header currentUser={currentUser} />
       <Component currentUser={currentUser} {...pageProps} />
+      <ContactForm />
     </div>
   );
 };
