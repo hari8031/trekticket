@@ -37,7 +37,7 @@ router.post(
     }
 
     const charge = await stripe.paymentIntents.create({
-      amount: 2000,
+      amount:order.price,
       currency: "usd",
       automatic_payment_methods: { enabled: true },
     });

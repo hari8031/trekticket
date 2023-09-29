@@ -35,7 +35,7 @@ export default () => {
           <label className=" font-medium">Enter your email</label>
           <input
             type="text"
-            className=" border-gray-300 border-2 rounded-lg h-14 px-5"
+            className=" border-gray-300 border-2 rounded-lg h-14 px-5 text-black"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -44,7 +44,7 @@ export default () => {
           <label className=" font-medium">Password</label>
           <input
             type="password"
-            className=" border-gray-300 border-2 rounded-lg h-14 px-5"
+            className=" border-gray-300 border-2 rounded-lg h-14 px-5 text-black"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
