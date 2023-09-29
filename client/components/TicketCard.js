@@ -8,7 +8,7 @@ const TicketCard = ({ tickets }) => {
             <div className=" flex flex-col items- justify-center">
               <span>Show Name :<span className="text-2xl"> {ticket.title}</span></span>
               <span>Price :<span className="text-2xl"> {ticket.price}</span></span>
-              <Link className="text-center rounded hover:bg-gray-100 " href={`/tickets/${ticket.id}`}>show</Link>
+              <Link className="w-1/3 text-center rounded bg-white text-black hover:text-black hover:bg-gray-100 " href={`/tickets/${ticket.id}`}>show</Link>
             </div>
           </div>
         );

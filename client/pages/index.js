@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ContactForm from "../components/ContactForm";
 import Discover from "../components/Discover";
 import Reward from "../components/Reward";
@@ -18,6 +19,15 @@ const LandingPage = ({ currentUser, tickets }) => {
           <h1 className=" text-3xl font-bold ">No tickets to show</h1>
         )}
       </div>
+      <h1 className=" text-5xl font-bold mt-10 text-center">
+        <span className=" text-5xl font-bold text-yellow-300">Find More Tickets</span>
+      </h1>
+      <Link
+        href="/tickets"
+        className=" rounded-xl p-3 bg-white shadow-2xl text-black text-2xl font-bold "
+      >
+        Show More
+      </Link>
       <TicketThumbnail />
       <Reward />
       <Discover />

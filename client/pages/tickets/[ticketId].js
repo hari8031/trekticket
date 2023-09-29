@@ -23,7 +23,7 @@ const TicketShow = ({ ticket }) => {
           </span>
         </h1>
         <div className="w-full md:w-10/12 lg:w-8/12 xl:w-6/12 shadow-slate-950 shadow-2xl rounded-xl flex flex-col justify-center items-center">
-          <div className="flex flex-col items-center p-5 md:p-10 gap-3 md:gap-5">
+          <div className="flex flex-col items-center mt-5 gap-3 md:gap-5">
             <div className="flex items-center justify-center gap-3 md:gap-5">
               <span className="text-lg md:text-xl lg:text-2xl font-bold">
                 Show Name:
@@ -44,7 +44,7 @@ const TicketShow = ({ ticket }) => {
           {errors}
           <button
             onClick={() => doRequest()}
-            className=" text-3xl font-bold m-5  w-full w-1/3 rounded text-white p-3 hover:bg-white hover:text-black"
+            className=" text-3xl font-bold m-5  w-1/3 rounded text-white p-3 hover:bg-white hover:text-black"
           >
             Grab Now
           </button>
