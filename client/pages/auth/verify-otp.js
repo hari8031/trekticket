@@ -5,19 +5,15 @@ import animationData from "../../assets/hero-bg-animation.json";
 import Lottie from "lottie-react";
 
 export default () => {
-  const [email, setEmail] = useState("");
-  const [fullname, setFullname] = useState("");
-  const [rollno, setRollno] = useState("");
+  const [otp, setOtp] = useState("")
 
   const { doRequest, errors } = useRequest({
-    url: "/api/users/signup",
+    url: "/api/users/verify-otp",
     method: "post",
     body: {
-      fullname,
-      rollno,
-      email,
+      otp
     },
-    onSuccess: () => Router.push("/auth/verify-otp"),
+    onSuccess: () => Router.push("/"),
   });
 
   const onSubmit = async (event) => {
@@ -25,6 +21,7 @@ export default () => {
 
     await doRequest();
   };
+ 
 
   return (
     <div className="flex justify-around items-center m-24 ">
@@ -35,37 +32,16 @@ export default () => {
         />
       </div>
       <form className="w-full max-w-[400px] mb-3" onSubmit={onSubmit}>
-        <h1 className=" text-2xl font-bold my-3">Sign up to TrekTicket</h1>
+        <h1 className=" text-2xl font-bold my-3">Verify your Otp</h1>
         <div className="flex flex-col my-3">
-          <label className=" font-medium">Enter your Full Name</label>
+          <label className=" font-medium">Enter your Otp here</label>
           <input
-            type="text"
+            type="otp"
             className=" border-gray-300 border-2 rounded-lg h-14 px-5 text-black"
-            value={fullname}
-            onChange={(e) => setFullname(e.target.value)}
+            value={otp}
+            onChange={(e) => setOtp(e.target.value)}
           />
         </div>
-
-        <div className="flex flex-col my-3">
-          <label className=" font-medium">Enter your Roll Number</label>
-          <input
-            type="text"
-            className=" border-gray-300 border-2 rounded-lg h-14 px-5 text-black"
-            value={rollno}
-            onChange={(e) => setRollno(e.target.value)}
-          />
-        </div>
-
-        <div className="flex flex-col my-3">
-          <label className=" font-medium">Enter your email</label>
-          <input
-            type="text"
-            className=" border-gray-300 border-2 rounded-lg h-14 px-5 text-black"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-
         {errors}
         <button className=" bg-blue-600 text-white h-14 w-full rounded-full my-3 hover:bg-blue-400 transition duration-300 ease-in-out">
           SignUp
