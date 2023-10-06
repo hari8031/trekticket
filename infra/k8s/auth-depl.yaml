@@ -17,7 +17,7 @@ spec:
           image: hk8031/auth
           env:
             - name: MONGO_URI
-              value: 'mongodb+srv://card-student:hari8031@student.rwmwyvq.mongodb.net/?retryWrites=true&w=majority'
+              value: 'mongodb://auth-mongo-srv:27017/auth'
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
